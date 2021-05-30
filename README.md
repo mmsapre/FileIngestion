@@ -53,6 +53,10 @@ This is ingest module to read csv file formats from mount path or NFS path.FileD
 Read records are transformed to a map structure json before pushing the records to configured kafka topic.Every file available event triggers new job launcher which
 is logged to batch collections.
 
+Diagram below, shows high level component communication for JobBatchAPI
+
+![JobBatchFileDataIngestion][img-jobbatchingest]
+
 + File data ingestion triggering event
   - Format / sample event
 ```shell
@@ -62,7 +66,7 @@ is logged to batch collections.
   "templateId": "BLMBERG"
   }
 ```
-  - Event stored to kafka topic
+  - Event stored to kafka topic after conversion to standard format as below.
 ```shell
 {
   "headers": {
@@ -92,9 +96,6 @@ is logged to batch collections.
     - BatchStepExecution : Maintains steps executed as part of job execution.
     - BatchJobParameter : Maintains job execution parameters.
 
-Diagram below, shows high level component communication for JobBatchAPI
-
-![JobBatchFileDataIngestion][img-jobbatchingest]
 
 ## Configuration
 + Kafka properties
