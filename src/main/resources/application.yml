@@ -1,0 +1,77 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# ===================================================================
+spring:
+  data:
+    mongodb:
+      #      uri: mongodb://myadmin:secret@localhost:27017/test?authSource=admin
+      host: localhost
+      port: 27017
+      database: test
+      username:
+      password:
+  cloud:
+    config:
+      # Allow local configuration to override Remote Externalized configuration
+      allowOverride: false
+      # But, only System properties or Env variables (and not local config files) will override externalized configuration
+      overrideSystemProperties: false
+  profiles:
+    active: dev
+  devtools:
+    restart:
+      enabled: true
+    jackson:
+      serialization.indent_output: true
+#RabbitMq
+RabbitMQ:
+  Host: localhost
+  Port: 5672
+  User: guest
+  Password: guest
+  VHost: /
+  name: rabbitmq
+  subscriber:
+    queue: filespool.queue
+    exchange: filespool.exchange
+    routingKey: distribution.*.*
+    topic: filespool.topic
+    dlqExchange: dlq.filespool.exchange
+    dlqQueue: dlq.filespool.queue
+    dlqRoutingKey: distribution-dlq.*.*
+    dlqExchangeType: topic
+Kafka:
+  config:
+    autooffsetreset: earliest
+  BootstrapServers: localhost:9092
+  ZookeeperHost: localhost:2081
+  topic: filespool-queue-6
+  dlq:
+    topic: dlq-filespool-queue
+file:
+  defaultFilePath: /home/maheshsapre/Documents/testspool/sample.csv
+  templateConfig:
+    blmberg:
+      prefifxIdentifier: BLMBERG
+      delimiter: \\,
+      useHeader: false
+      template: ISIN|NAME|MVAL|OPEN|HIGH|LAST|LOW|CLOSE|TURNOVER|TOTALQUANTITY|DATE
+      useTemplate: true
+      partition: 0
+management:
+  metrics:
+    export:
+      prometheus:
+        pushgateway:
+          enabled: true
+          base-url: http://localhost:9091
+          shutdown-operation: push
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+
+
