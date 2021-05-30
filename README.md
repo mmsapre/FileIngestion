@@ -1,4 +1,4 @@
-# File Batch Data Ingestion Module
+# File Data Ingestion Module
 
 * [Summary](#summary)
 * [Prerequisites](#prerequisites)
