@@ -11,7 +11,7 @@
 [img-jobbatchingest]: img/FileDataIngestion.jpeg
 
 ## Summary
-+ File batch data ingestion module pushes records from csv file to kafka topic.On receipt of trigger on rabbitmq exchange 
++ File data ingestion module pushes records from csv file to kafka topic.On receipt of trigger on rabbitmq exchange 
   module pushes the read file to kafka topic partition.File records can be read in chunks before transformed to a canonical format
   json model.
   
@@ -51,9 +51,9 @@ mvn -U clean compile -DskipTests
 
 This is ingest module to read csv file formats from mount path or NFS path.FileData ingestion is triggered on receiving event on RabbitMq exchange.
 Read records are transformed to a map structure json before pushing the records to configured kafka topic.Every file available event triggers new job launcher which
-is logged to batch collections.
+is logged to filebatch collections.
 
-Diagram below, shows high level component communication for JobBatchAPI
+Diagram below, shows high level components in file data ingestion.
 
 ![JobBatchFileDataIngestion][img-jobbatchingest]
 
