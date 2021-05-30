@@ -24,7 +24,8 @@ To be able to run this module it is recommended to ensure following prerequisite
     - Spring framework (Spring DI, Beans, REST) , Spring batch and Springboot
     - MongoDb
     - RabbitMq
-    - Apache Camel  
+    - Apache Camel
+    - Redis  
     - Kafka  
     - REST API standards & JSON (un)marshalling
     - Eclipse, Junit, Maven
@@ -51,7 +52,7 @@ mvn -U clean compile -DskipTests
 
 This is ingest module to read csv file formats from mount path or NFS path.FileData ingestion is triggered on receiving event on RabbitMq exchange.
 Read records are transformed to a map structure json before pushing the records to configured kafka topic.Every file available event triggers new job launcher which
-is logged to filebatch collections.
+is logged to filebatch collections.Redis cache will enable locking of file or part to be processed by a procesor(to implement). 
 
 Diagram below, shows high level components in file data ingestion.
 
